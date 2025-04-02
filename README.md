@@ -43,7 +43,7 @@ build\Debug\CPU-RayTracer > image.ppm
 Or, for an optimized version:
 
 ```sh
-build/Release/CPU-RayTracer > image.ppm
+build\Release\CPU-RayTracer > image.ppm
 ```
 
 The output file `image.ppm` can be opened with an image viewer that supports PPM format or converted to other formats using tools like ImageMagick. You can also use an online resource [ppm viewer](https://www.cs.rhodes.edu/welshc/COMP141_F16/ppmReader.html).

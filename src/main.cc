@@ -7,7 +7,6 @@
 
 triangle triangle = {point3(0, 1, -1), point3(-1, 0, -1), point3(1, 0, -1)};
 
-
 double hit_sphere(const point3& center, double radius, const ray& r)
 {
   vec3 oc = center - r.origin();
