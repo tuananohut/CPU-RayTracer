@@ -3,40 +3,34 @@
 
 #include "hittable.h"
 
+#include <vector>
+
 struct hittable_list: public hittable
 {
-  static const int MAX_OBJECTS = 100; 
-  static hittable* objects[MAX_OBJECTS];
-  static int size;
- 
+  std::vector<shared_ptr<hittable>> objects; 
+    
   hittable_list() {}
-  hittable_list(hittable& object) { add(object); }
+  hittable_list(shared_ptr<hittable> object) { add(object); }
 
   void clear()
   {
-    for (int i = 0; i < size; i++)
-      {
-	delete objects[i];
-	objects[i] = nullptr;
-      }
-
-    size = 0;
+    objects.clear();
   }
   
-  void add(hittable& object)
+  void add(shared_ptr<hittable> object)
   {
-    objects[size++] = &object; 
+    objects.emplace_back(object); 
   }
-
-  bool hit(const ray& r, double ray_tmin, double ray_tmax, hit_record& rec) const override
+  
+  bool hit(const ray& r, interval ray_t, hit_record& rec) const override
   {
     hit_record temp_rec;
     bool hit_anything = false;
-    auto closest_so_far = ray_tmax;
+    auto closest_so_far = ray_t.max;
 
     for (const auto& object: objects)
       {
-	if (object->hit(r, ray_tmin, closest_so_far, temp_rec))
+	if (object->hit(r, interval(ray_t.min, closest_so_far), temp_rec))
 	  {
 	    hit_anything = true;
 	    closest_so_far = temp_rec.t;
@@ -47,8 +41,5 @@ struct hittable_list: public hittable
     return hit_anything; 
   }
 };
-
-int hittable_list::size = 0;
-hittable* hittable_list::objects[hittable_list::MAX_OBJECTS] = { nullptr };
 
 #endif

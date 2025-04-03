@@ -1,8 +1,6 @@
 #ifndef HITTABLE_H
 #define HITTABLE_H
 
-#include "ray.h"
-
 struct hit_record
 {
   point3 p;
@@ -22,8 +20,7 @@ struct hittable
   virtual ~hittable() = default;
 
   virtual bool hit(const ray& r,
-		   double ray_tmin,
-		   double ray_tmax,
+		   interval ray_t,
 		   hit_record& rec)
     const = 0;
 };

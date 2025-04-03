@@ -10,8 +10,7 @@ struct triangle: public hittable
   vertexA(a), vertexB(b), vertexC(c) {}
 
   bool hit(const ray& r,
-	   double ray_tmin,
-	   double ray_tmax,
+	   interval ray_t,
 	   hit_record& rec)
     const override
   {
@@ -40,7 +39,7 @@ struct triangle: public hittable
       return false;
 
     double t = dot(E2, q) * invDet;
-    if (t < ray_tmin || t > ray_tmax)
+    if (t < ray_t.min || t > ray_t.max)
       return false;
 
     rec.t = t;
