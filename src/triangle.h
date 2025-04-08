@@ -6,9 +6,9 @@
 
 struct triangle: public hittable
 {
- triangle(const vec3& a, const vec3& b, const vec3& c) :
-  vertexA(a), vertexB(b), vertexC(c) {}
-
+  triangle(const vec3& a, const vec3& b, const vec3& c, shared_ptr<material> mat) :
+    vertexA(a), vertexB(b), vertexC(c), mat(mat) {}
+  
   bool hit(const ray& r,
 	   interval ray_t,
 	   hit_record& rec)
@@ -45,13 +45,15 @@ struct triangle: public hittable
     rec.t = t;
     rec.p = r.at(t);
     rec.normal = unit_vector(cross(E1, E2));
-
+    rec.mat = mat; 
+    
     return true;
   }
-
-point3 vertexA;
-point3 vertexB;
-point3 vertexC;
+  
+  point3 vertexA;
+  point3 vertexB;
+  point3 vertexC;
+  shared_ptr<material> mat; 
 };
 
 
