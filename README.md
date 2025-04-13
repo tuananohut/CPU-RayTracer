@@ -16,11 +16,7 @@ The goal of this project is to create a ray tracer that evolves over time. It wi
 
 ## Screenshots 
 
-<details>
-	<summary>Ray Tracing in One Weekend</summary>
-	
-	![Final Image](https://github.com/tuananohut/CPU-RayTracer/blob/main/images/48_final_image.png)
-</details>
+![Final Image](https://github.com/tuananohut/CPU-RayTracer/blob/main/images/48_final_image.png)
 
 ## Build
 ### Prerequisites
