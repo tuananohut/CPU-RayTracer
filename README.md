@@ -1,11 +1,11 @@
 # CPU-RayTracer
 
 ## About
-**CPU-RayTracer** is a simple ray tracer implemented in C++. This project is part of the **Ray Tracing Series**, where I explore ray tracing concepts, algorithms, and implementations while building a CPU-based ray tracer from scratch.
+**CPU-RayTracer** is a simple ray tracer implemented in C++. It is a learning project where I explore ray tracing concepts, algorithms, and implementations while building a CPU-based ray tracer from scratch.
+
+This project follows the Ray Tracing in One Weekend book series by Peter Shirley, available at [Ray Tracing in One Weekend](https://raytracing.github.io/). While working through the series, I also expand on its ideas, experiment with modifications, and add personal insights to reinforce my understanding.
 
 The goal of this project is to create a ray tracer that evolves over time. It will initially focus on basic features like ray-sphere intersection, then move towards more advanced concepts such as global illumination, path tracing, and physically based rendering (PBR). As the project grows, I plan to split the development into different repositories, which I will be sure to share.
-
-This project is heavily inspired by the **Ray Tracing in One Weekend** book series, available at [raytracing.github.io](https://raytracing.github.io/). While following this book, I also aim to expand on its concepts, add my own insights, and make modifications to suit my learning path.
 
 ## Features
 - Basic ray-sphere intersection
@@ -13,6 +13,14 @@ This project is heavily inspired by the **Ray Tracing in One Weekend** book seri
 - PPM image output
 - C++ and CMake-based build system
 - Extensible design for future enhancements
+
+## Screenshots 
+
+<details>
+	<summary>Ray Tracing in One Weekend</summary>
+	
+	![Final Image](images/48_final_image.png)
+</details>
 
 ## Build
 ### Prerequisites
@@ -59,3 +67,14 @@ This project will be continuously updated with new features as the **Ray Tracing
 
 ## Contributing
 Contributions and suggestions are welcome! Feel free to open issues or submit pull requests to improve this project.
+
+## Acknowledgements
+
+This project is heavily based on the Ray Tracing in One Weekend book series by Peter Shirley.
+The series is freely available online at [Ray Tracing in One Weekend](https://raytracing.github.io/) and has been an invaluable resource in my learning journey.
+
+Special thanks to:
+
+Peter Shirley, for making advanced rendering concepts accessible and approachable.
+
+
