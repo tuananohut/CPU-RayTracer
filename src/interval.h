@@ -11,6 +11,13 @@ interval()
 interval(double min, double max)
   : min(min), max(max) {}
 
+  interval(const interval& a, const interval& b)
+  {
+    // Create the interval tightly enclosing the two input intervalss.
+    min = a.min <= b.min ? a.min: b.min;
+    max = a.max >= b.max ? a.max: b.max; 
+  }
+  
   double size() const
   {
     return max - min; 
@@ -23,9 +30,9 @@ interval(double min, double max)
 
   bool surrounds(double x) const
   {
-    return min < x && x < max; 
+    return min < x && x < max;
   }
-
+  
   double clamp(double x) const
   {
     if (x < min) return min;
