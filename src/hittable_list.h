@@ -1,6 +1,7 @@
 #ifndef HITTABLE_LIST_H
 #define HITTABLE_LIST_H
 
+#include "aabb.h"
 #include "hittable.h"
 
 #include <vector>
@@ -19,7 +20,8 @@ struct hittable_list: public hittable
   
   void add(shared_ptr<hittable> object)
   {
-    objects.emplace_back(object); 
+    objects.emplace_back(object);
+    bbox = aabb(bbox, object->bounding_box());
   }
   
   bool hit(const ray& r, interval ray_t, hit_record& rec) const override
@@ -40,6 +42,13 @@ struct hittable_list: public hittable
 
     return hit_anything; 
   }
+
+  aabb bounding_box() const override
+  {
+    return bbox; 
+  }
+
+  aabb bbox;
 };
 
 #endif
