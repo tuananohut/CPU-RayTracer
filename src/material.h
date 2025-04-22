@@ -2,6 +2,7 @@
 #define MATERIAL_H
 
 #include "hittable.h"
+#include "texture.h"
 
 struct material
 {
@@ -20,9 +21,11 @@ struct material
 // We chose always scatter
 struct lambertian: public material
 {
- lambertian(const color& albedo):
-  albedo(albedo) {}
-
+  lambertian(const color& albedo):
+    tex(make_shared<solid_color>(albedo)) {}
+  lambertian(shared_ptr<texture> tex):
+    tex(tex) {}
+  
   bool scatter(const ray& r_in,
 	       const hit_record& rec,
 	       color& attenuation,
@@ -37,14 +40,14 @@ struct lambertian: public material
       }
    
     scattered = ray(rec.p, scatter_direction, r_in.time());
-    attenuation = albedo;
+    attenuation = tex->value(rec.u, rec.v, rec.p);
 
     // Third option: fixed probability p and attenuation albedo / p
       
     return true;
   }
-  
-  color albedo;
+
+  shared_ptr<texture> tex; 
 };
 
 struct metal: public material
