@@ -1,6 +1,7 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
+#include "perlin.h"
 #include "rtw_stb_image.h"
 
 struct texture
@@ -77,6 +78,18 @@ struct image_texture: public texture
   }
 
   rtw_image image; 
+};
+
+struct noise_texture: public texture
+{
+  noise_texture() {}
+
+  color value(double u, double v, const point3& p) const override
+  {
+    return color(1, 1, 1) * noise.noise(p);
+  }
+
+  perlin noise; 
 };
 
 #endif
