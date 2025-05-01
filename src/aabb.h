@@ -19,10 +19,10 @@ struct aabb
   {
     // Treat the two points a and b as extrema for the bounding box, so we don't require a
     // particular minimum/maximum coordinate order.
-
-    x = (a[0] <= b[0]) ? interval(a[0], b[0]) : interval(b[0], a[0]);
-    y = (a[1] <= b[1]) ? interval(a[1], b[1]) : interval(b[1], a[1]);
-    z = (a[2] <= b[2]) ? interval(a[2], b[2]) : interval(b[2], a[2]);
+    
+    x = interval(std::fmin(a[0],b[0]), std::fmax(a[0],b[0]));
+    y = interval(std::fmin(a[1],b[1]), std::fmax(a[1],b[1]));
+    z = interval(std::fmin(a[2],b[2]), std::fmax(a[2],b[2]));
 
     pad_to_minimums();
   }

@@ -3,12 +3,15 @@
 
 #include "hittable.h"
 
+#include <cmath>
+
 struct quad: public hittable
 {
   quad(const point3& Q,
        const vec3& u,
        const vec3& v,
        shared_ptr<material> mat)
+    : Q(Q), u(u), v(v), mat(mat)
     {
       auto n = cross(u, v);
       normal = unit_vector(n);
@@ -23,7 +26,7 @@ struct quad: public hittable
     // Compute the bounding box of all four vertices.
     auto bbox_diagonal1 = aabb(Q, Q + u + v);
     auto bbox_diagonal2 = aabb(Q + u, Q + v);
-    bbox = aabb(bbox_diagonal1, bbox_diagonal2); 
+    bbox = aabb(bbox_diagonal1, bbox_diagonal2);
   }
 
   aabb bounding_box() const override
@@ -93,4 +96,76 @@ struct quad: public hittable
   double D; 
 };
 
+/*
+struct tri: public quad
+{
+  tri(const point3& o, const vec3& aa, const vec3& ab, shared_ptr<material> m):
+    quad(o, aa, ab, m) {}
+
+  virtual bool is_interior(double a, double b, hit_record& rec) const override
+  {
+    if ((a < 0) || (b < 0) || (a + b > 1))
+      return false;
+
+    rec.u = a;
+    rec.v = b;
+
+    return true; 
+  }
+};
+
+struct ellipse: public quad
+{
+  ellipse(const point3& center,
+	  const vec3& side_A,
+	  const vec3& side_B,
+	  shared_ptr<material> m):
+    quad(center, side_A, side_B, m) {}
+
+  virtual bool set_bounding_box() override
+  {
+    bbox = aabb(plane_origin - axis_A - axis_B, plane_origin + axis_A + axis_B).pad();
+  }
+
+  virtual bool is_interior(double a, double b, hit_record& rec) const override
+  {
+    if ((a*a + b*b) > 1)
+      return false;
+
+    rec.u = a/2 + 0.5;
+    rec.v = b/2 + 0.5;
+
+    return true; 
+  }
+};
+
+struct annulus: public quad
+{
+  annulus(const point3& center,
+	  const vec3& side_A,
+	  const vec3& side_B,
+	  double _inner,
+	  shared_ptr<material> m):
+    quad(center, side_A, side_B, m), inner(_inner) {}
+
+  virtual void set_bounding_box() override
+  {
+    bbox = aabb(plane_origin - axis_A - axis_B, plane_origin + axis_A + axis_B).pad();
+  }
+
+  virtual bool is_interior(double a, double b, hit_record& rec) const override
+  {
+    auto center_dist = sqrt(a*a + b*b);
+    if ((center_dist < inner) || (center_dist > 1))
+      return false;
+
+    rec.u = a/2 + 0.5;
+    rec.v = b/2 + 0.5;
+    
+    return true;
+  }
+
+  double inner; 
+};
+*/
 #endif
