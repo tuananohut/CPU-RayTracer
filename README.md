@@ -13,10 +13,27 @@ The goal of this project is to create a ray tracer that evolves over time. It wi
 - PPM image output
 - C++ and CMake-based build system
 - Extensible design for future enhancements
+- Motion Blur
+- Bounding Volume Hierarchies (BVH) for accelerated ray-object intersection
+- Texture Mapping with image-based and procedural textures
+- Perlin Noise 
+- Lighting 
+- Volume Rendering — supporting fog-like media and translucent effects
 
 ## Screenshots 
 
 ![Final Image](https://github.com/tuananohut/CPU-RayTracer/blob/main/images/48_final_image.png)
+
+![Bouncing Spheres](https://github.com/tuananohut/CPU-RayTracer/blob/main/images/50_bouncing_spheres_high_quality.png)
+
+![Cornell Box](https://github.com/tuananohut/CPU-RayTracer/blob/main/images/71_standard_cornell_box_high_quality.png)
+
+![Cornell Spheres](https://github.com/tuananohut/CPU-RayTracer/blob/main/images/75_cornell_spheres.png)
+
+![Ray Tracing The Next Week](https://github.com/tuananohut/CPU-RayTracer/blob/main/images/73_ray_tracing_the_next_week.png)
+
+![Cornell Box](https://github.com/tuananohut/CPU-RayTracer/blob/main/images/71_standard_cornell_box_high_quality.png)
+
 
 ## Build
 ### Prerequisites
