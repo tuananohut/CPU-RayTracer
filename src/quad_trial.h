@@ -26,7 +26,7 @@ struct quad_trial : public hittable
   
   virtual void set_bounding_box()
   {
-    bbox = aabb(corner, corner + side_A + side_B).pad();
+    bbox = aabb(corner, corner + side_A + side_B).pad_to_minimums();
   }
 
   aabb bounding_box() const override
@@ -140,7 +140,7 @@ struct ellipse : public quad_trial
   
   virtual void set_bounding_box() override
   {
-    bbox = aabb(plane_origin - axis_A - axis_B, plane_origin + axis_A + axis_B).pad();
+    bbox = aabb(plane_origin - axis_A - axis_B, plane_origin + axis_A + axis_B).pad_to_minimums();
   }
   
   virtual bool hit_ab(double a, double b, hit_record& rec) const override
@@ -166,7 +166,7 @@ struct annulus : public quad_trial
 
   virtual void set_bounding_box() override
   {
-    bbox = aabb(plane_origin - axis_A - axis_B, plane_origin + axis_A + axis_B).pad();
+    bbox = aabb(plane_origin - axis_A - axis_B, plane_origin + axis_A + axis_B).pad_to_minimums();
   }
   
   virtual bool hit_ab(double a, double b, hit_record& rec) const override

@@ -6,3 +6,4 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(CPU-RayTracer src/main.cc)
+add_executable(pi src/pi.cc)
