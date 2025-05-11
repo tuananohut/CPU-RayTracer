@@ -7,3 +7,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(CPU-RayTracer src/main.cc)
 add_executable(pi src/pi.cc)
+add_executable(integrate_x_sq src/integrate_x_sq.cc)
