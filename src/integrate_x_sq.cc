@@ -5,22 +5,25 @@
 
 double icd(double d)
 {
-  return 2.0 * d;
+  return std::sqrt(4.0 * d);
 }
 
 double pdf(double x)
 {
-  return 0.5;
+  return x / 2.0;
 }
 
 int main()
 {
-  int N = 1000000;
+  int N = 1;
   auto sum = 0.;
 
   for (int = 0; i < N; i++)
     {
-      auto x = icd(random_double());
+      auto z = random_double();
+      if (z == 0.0) // Ignore zero to avoid NaNs
+	continue;
+      
       sum += x*x / pdf(x);  
     }
 
