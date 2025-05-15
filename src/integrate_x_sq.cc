@@ -5,12 +5,12 @@
 
 double icd(double d)
 {
-  return std::sqrt(4.0 * d);
+  return 8. * std::pow(d, 1. / 3.);
 }
 
 double pdf(double x)
 {
-  return x / 2.0;
+  return (3./8.) * x*x;
 }
 
 int main()

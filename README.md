@@ -32,8 +32,6 @@ The goal of this project is to create a ray tracer that evolves over time. It wi
 
 ![Ray Tracing The Next Week](https://github.com/tuananohut/CPU-RayTracer/blob/main/images/73_ray_tracing_the_next_week.png)
 
-![Cornell Box](https://github.com/tuananohut/CPU-RayTracer/blob/main/images/71_standard_cornell_box_high_quality.png)
-
 
 ## Build
 ### Prerequisites
