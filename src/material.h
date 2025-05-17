@@ -20,6 +20,13 @@ struct material
   {
     return false; 
   }
+
+  virtual double scattering_pdf(const ray& r_in,
+				const hit_record& rec,
+				const ray& scattered) const 
+  {
+    return 0; 
+  }
 };
 
 // We chose always scatter
@@ -42,13 +49,21 @@ struct lambertian: public material
       {
 	scatter_direction = rec.normal; 
       }
-   
+    
     scattered = ray(rec.p, scatter_direction, r_in.time());
     attenuation = tex->value(rec.u, rec.v, rec.p);
 
     // Third option: fixed probability p and attenuation albedo / p
       
     return true;
+  }
+
+  double scattering_pdf(const ray& r_in,
+			const hit_record& rec,
+			const ray& scattered) const override
+  {
+    auto cos_theta = dot(rec.normal, unit_vector(scattered.direction()));
+    return cos_theta < 0 ? 0 : cos_theta/pi;
   }
 
   shared_ptr<texture> tex; 
