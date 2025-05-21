@@ -12,4 +12,4 @@ add_executable(estimate_halfway src/estimate_halfway.cc)
 add_executable(sphere_importance src/sphere_importance.cc)
 add_executable(sphere_plot src/sphere_plot.cc)
 add_executable(cos_cubed.cc src/cos_cubed.cc)
-
+add_executable(cos_density.cc src/cos_density.cc)
