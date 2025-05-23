@@ -2,6 +2,7 @@
 #define MATERIAL_H
 
 #include "hittable.h"
+#include "onb.h"
 #include "texture.h"
 
 struct material
@@ -16,7 +17,8 @@ struct material
   virtual bool scatter(const ray& r_in,
 		       const hit_record& rec,
 		       color& attenuation,
-		       ray& scattered) const
+		       ray& scattered,
+		       double& pdf) const
   {
     return false; 
   }
@@ -40,20 +42,15 @@ struct lambertian: public material
   bool scatter(const ray& r_in,
 	       const hit_record& rec,
 	       color& attenuation,
-	       ray& scattered) const override 
+	       ray& scattered,
+	       double& pdf) const override 
   {
-    auto scatter_direction = random_on_hemisphere(rec.normal);
-    
-    // Catch degenerate scatter direction
-    if (scatter_direction.near_zero())
-      {
-	scatter_direction = rec.normal; 
-      }
-    
-    scattered = ray(rec.p, scatter_direction, r_in.time());
-    attenuation = tex->value(rec.u, rec.v, rec.p);
+    onb uvw(rec.normal);
+    auto scatter_direction = uvw.transform(random_cosine_direction());
 
-    // Third option: fixed probability p and attenuation albedo / p
+    scattered = ray(rec.p, unit_vector(scatter_direction), r_in.time());
+    attenuation = tex->value(rec.u, rec.v, rec.p);
+    pdf = dot(uvw.w(), scattered.direction()) / pi; 
       
     return true;
   }
@@ -76,7 +73,8 @@ struct metal: public material
   bool scatter(const ray& r_in,
 	       const hit_record& rec,
 	       color& attenuation,
-	       ray& scattered) const override
+	       ray& scattered,
+	       double& pdf) const override
   {
     vec3 reflected = reflect(r_in.direction(), rec.normal);
     reflected = unit_vector(reflected) + (fuzz * random_unit_vector());
@@ -98,7 +96,8 @@ struct dielectric: public material
   bool scatter(const ray& r_in,
 	       const hit_record& rec,
 	       color& attenuation,
-	       ray& scattered) const override
+	       ray& scattered,
+	       double& pdf) const override
   {
     attenuation = color(1., 1., 1.);
     double ri = rec.front_face ? (1./refraction_index): refraction_index;
@@ -163,7 +162,8 @@ struct isotropic: public material
   bool scatter(const ray& r_in,
 	       const hit_record& rec,
 	       color& attenuation,
-	       ray& scattered) const override
+	       ray& scattered,
+	       double& pdf) const override
   {
     scattered = ray(rec.p, random_unit_vector(), r_in.time());
     attenuation = tex->value(rec.u, rec.v, rec.p);
