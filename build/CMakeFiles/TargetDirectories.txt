@@ -1,0 +1,5 @@
+C:/Users/tuana/Masaüstü/PROJELER/C++ PROJELER/CPU-RayTracer/build/CMakeFiles/CPU-RayTracer.dir
+C:/Users/tuana/Masaüstü/PROJELER/C++ PROJELER/CPU-RayTracer/build/CMakeFiles/sphere_importance.dir
+C:/Users/tuana/Masaüstü/PROJELER/C++ PROJELER/CPU-RayTracer/build/CMakeFiles/cos_cubed.cc.dir
+C:/Users/tuana/Masaüstü/PROJELER/C++ PROJELER/CPU-RayTracer/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/tuana/Masaüstü/PROJELER/C++ PROJELER/CPU-RayTracer/build/CMakeFiles/ZERO_CHECK.dir
