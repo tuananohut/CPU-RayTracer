@@ -154,7 +154,7 @@ struct camera
     ray scattered;
     color attenuation;
     double pdf_value; 
-    color color_from_emission = rec.mat->emitted(rec.u, rec.v, rec.p); 
+    color color_from_emission = rec.mat->emitted(r, rec, rec.u, rec.v, rec.p); 
     
     if (!rec.mat->scatter(r, rec, attenuation, scattered, pdf_value))
       return color_from_emission; 
