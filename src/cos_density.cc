@@ -25,7 +25,7 @@ int main()
       sum += f(d) / pdf(d); 
     }
 
-  std::cout << std::fixed << std::precision(12);
+  std::cout << std::fixed << std::setprecision(12);
   std::cout << "PI/2 = " << pi / 2. << '\n';
   std::cout << "Estimate = " << sum / N << '\n'; 
 }
