@@ -1,6 +1,7 @@
 #ifndef PDF_H
 #define PDF_H
 
+#include "hittable_list.h"
 #include "onb.h"
 
 struct pdf
@@ -43,6 +44,25 @@ struct cosine_pdf: public pdf
   }
 
   onb uvw; 
+};
+
+struct hittable_pdf: public pdf
+{
+  hittable_pdf(const hittable& objects, const point3& origin):
+    objects(objects), origin(origin) {}
+
+  double value(const vec3& direction) const override
+  {
+    return objects.pdf_value(origin, direction); 
+  }
+
+  vec3 generate() const override
+  {
+    return objects.random(origin); 
+  }
+
+  const hittable& objects;
+  point3 origin; 
 };
 
 #endif
