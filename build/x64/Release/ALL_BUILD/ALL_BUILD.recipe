@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\tuana\Masaüstü\PROJELER\C++ PROJELER\CPU-RayTracer\build\x64\Release\ZERO_CHECK</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\tuana\Masaüstü\PROJELER\C++ PROJELER\CPU-RayTracer\build\Release\CPU-RayTracer.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\tuana\Masaüstü\PROJELER\C++ PROJELER\CPU-RayTracer\build\Release\cos_cubed.cc.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\tuana\Masaüstü\PROJELER\C++ PROJELER\CPU-RayTracer\build\Release\cos_density.cc.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\tuana\Masaüstü\PROJELER\C++ PROJELER\CPU-RayTracer\build\Release\estimate_halfway.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\tuana\Masaüstü\PROJELER\C++ PROJELER\CPU-RayTracer\build\Release\integrate_x_sq.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\tuana\Masaüstü\PROJELER\C++ PROJELER\CPU-RayTracer\build\Release\pi.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\tuana\Masaüstü\PROJELER\C++ PROJELER\CPU-RayTracer\build\Release\sphere_importance.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\tuana\Masaüstü\PROJELER\C++ PROJELER\CPU-RayTracer\build\Release\sphere_plot.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\tuana\Masaüstü\PROJELER\C++ PROJELER\CPU-RayTracer\build\x64\Release\ALL_BUILD</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles />
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

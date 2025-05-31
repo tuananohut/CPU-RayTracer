@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\tuana\Masaüstü\PROJELER\C++ PROJELER\CPU-RayTracer\build\CMakeFiles\3e23da551c64ef45e4bca9ecd2e90d6e\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{62FD48CD-6480-337F-B3AE-70CD7E44028A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
