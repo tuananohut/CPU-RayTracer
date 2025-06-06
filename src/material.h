@@ -5,6 +5,14 @@
 #include "onb.h"
 #include "texture.h"
 
+struct scatter_record
+{
+  color attenuation;
+  shared_ptr<pdf> pdf_ptr;
+  bool skip_pdf;
+  ray skip_pdf_ray; 
+};
+
 struct material
 {
   virtual ~material() = default;
@@ -27,7 +35,7 @@ struct material
 
   virtual double scattering_pdf(const ray& r_in,
 				const hit_record& rec,
-				const ray& scattered) const 
+				scatter_record& srec) const 
   {
     return 0; 
   }
