@@ -2,7 +2,7 @@
 #define MATERIAL_H
 
 #include "hittable.h"
-#include "onb.h"
+#include "pdf.h"
 #include "texture.h"
 
 struct scatter_record
@@ -51,17 +51,12 @@ struct lambertian: public material
   
   bool scatter(const ray& r_in,
 	       const hit_record& rec,
-	       color& attenuation,
-	       ray& scattered,
-	       double& pdf) const override 
+	       scatter_record& srec) const override 
   {
-    onb uvw(rec.normal);
-    auto scatter_direction = uvw.transform(random_cosine_direction());
-
-    scattered = ray(rec.p, unit_vector(scatter_direction), r_in.time());
-    attenuation = tex->value(rec.u, rec.v, rec.p);
-    pdf = dot(uvw.w(), scattered.direction()) / pi; 
-      
+    srec.attenuation = tex->value(rec.u, rec.v, rec.p);
+    srec.pdf_ptr = make_shared<cosine_pdf>(rec.normal);
+    srec.skip_pdf = false; 
+    
     return true;
   }
 
@@ -69,7 +64,8 @@ struct lambertian: public material
 			const hit_record& rec,
 			const ray& scattered) const override
   {
-    return 1 / (2*pi); 
+    auto cos_theta = dot(rec.normal, unit_vector(scattered.direction()));
+    return cos_theta < 0 ? 0 : cos_theta/pi; 
   }
 
   shared_ptr<texture> tex; 
