@@ -152,25 +152,22 @@ struct camera
     if (!world.hit(r, interval(0.001, infinity), rec))
       return background; 
     
-    ray scattered;
-    color attenuation;
-    double pdf_value; 
+    scatter_record srec;
     color color_from_emission = rec.mat->emitted(r, rec, rec.u, rec.v, rec.p); 
     
-    if (!rec.mat->scatter(r, rec, attenuation, scattered, pdf_value))
+    if (!rec.mat->scatter(r, rec, srec))
       return color_from_emission; 
 
-    auto p0 = make_shared<hittable_pdf>(lights, rec.p);
-    auto p1 = make_shared<cosine_pdf>(rec.normal);
-    mixture_pdf mixed_pdf(p0, p1);
+    auto light_ptr = make_shared<hittable_pdf>(lights, rec.p);
+    mixture_pdf p(light_ptr, srec.pdf_ptr);
 
-    scattered = ray(rec.p, mixed_pdf.generate(), r.time());
-    pdf_value = mixed_pdf.value(scattered.direction());
+    ray scattered = ray(rec.p, p.generate(), r.time());
+    auto pdf_value = p.value(scattered.direction());
     
     double scattering_pdf = rec.mat->scattering_pdf(r, rec, scattered);
       
     color sample_color = ray_color(scattered, depth-1, world, lights);
-    color color_from_scatter = (attenuation * scattering_pdf * sample_color) / pdf_value;
+    color color_from_scatter = (srec.attenuation * scattering_pdf * sample_color) / pdf_value;
   
     return color_from_emission + color_from_scatter;
   }
