@@ -78,16 +78,17 @@ struct metal: public material
 
   bool scatter(const ray& r_in,
 	       const hit_record& rec,
-	       color& attenuation,
-	       ray& scattered,
-	       double& pdf) const override
+	       scatter_record& srec) const override
   {
     vec3 reflected = reflect(r_in.direction(), rec.normal);
     reflected = unit_vector(reflected) + (fuzz * random_unit_vector());
-    scattered = ray(rec.p, reflected, r_in.time());
-    attenuation = albedo;
-
-    return (dot(scattered.direction(), rec.normal) > 0);
+    
+    srec.attenuation = albedo;
+    srec.pdf_ptr = nullptr;
+    srec.skip_pdf = true;
+    srec.skip_pdf_ray = ray(rec.p, reflected, r_in.time());
+      
+    return true; 
   }
 
   color albedo;
@@ -101,11 +102,11 @@ struct dielectric: public material
 
   bool scatter(const ray& r_in,
 	       const hit_record& rec,
-	       color& attenuation,
-	       ray& scattered,
-	       double& pdf) const override
+	       scatter_record& srec) const override
   {
     attenuation = color(1., 1., 1.);
+    srec.pdf_ptr = nullptr;
+    srec.skip_pdf = true; 
     double ri = rec.front_face ? (1./refraction_index): refraction_index;
     
     vec3 unit_direction = unit_vector(r_in.direction());
@@ -124,7 +125,7 @@ struct dielectric: public material
 	direction = refract(unit_direction, rec.normal, ri); 
       }
     
-    scattered = ray(rec.p, direction, r_in.time());
+    srec.skip_pdf_ray = ray(rec.p, direction, r_in.time()); 
     return true; 
   }
   
