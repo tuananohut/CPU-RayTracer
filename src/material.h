@@ -26,16 +26,14 @@ struct material
   
   virtual bool scatter(const ray& r_in,
 		       const hit_record& rec,
-		       color& attenuation,
-		       ray& scattered,
-		       double& pdf) const
+		       scatter_record& srec) const
   {
     return false; 
   }
 
   virtual double scattering_pdf(const ray& r_in,
 				const hit_record& rec,
-				scatter_record& srec) const 
+				const ray& scatttered) const 
   {
     return 0; 
   }
@@ -104,7 +102,7 @@ struct dielectric: public material
 	       const hit_record& rec,
 	       scatter_record& srec) const override
   {
-    attenuation = color(1., 1., 1.);
+    srec.attenuation = color(1., 1., 1.);
     srec.pdf_ptr = nullptr;
     srec.skip_pdf = true; 
     double ri = rec.front_face ? (1./refraction_index): refraction_index;
